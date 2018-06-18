@@ -1,0 +1,564 @@
+﻿<controls:MetroWindow x:Name="RootWindow"
+                      x:Class="GrandTheftMultiplayer.Launcher.Views.MainWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:views="clr-namespace:GrandTheftMultiplayer.Launcher.Controls.Views"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:command="http://www.galasoft.ch/mvvmlight"
+                      mc:Ignorable="d"
+                      Background="{DynamicResource WindowBackgroundBrush}"
+                      DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
+                      Title="Grand Theft Multiplayer Launcher"
+                      ShowIconOnTitleBar="True"
+                      Icon="../Resources/Images/icon_nobg.ico"
+                      Height="630"
+                      Width="940"
+                      MinWidth="745"
+                      MinHeight="700"
+                      BorderThickness="1"
+                      GlowBrush="{DynamicResource AccentColorBrush3}"
+                      WindowStartupLocation="CenterScreen"
+                      Closed="OnClosed"
+                      Loaded="OnLoaded">
+    <controls:MetroWindow.Resources>
+
+        <Style TargetType="controls:ToggleSwitch">
+            <Setter Property="Margin"
+                    Value="10 10 5 10" />
+            <Setter Property="OnLabel"
+                    Value="" />
+            <Setter Property="OffLabel"
+                    Value="" />
+        </Style>
+
+        <Style x:Key="SubHeaderTextStyle"
+               TargetType="Label">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="5"
+                                      Direction="310"
+                                      ShadowDepth="1" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontFamily"
+                    Value="Arial" />
+            <Setter Property="FontSize"
+                    Value="12" />
+            <Setter Property="Foreground"
+                    Value="White" />
+        </Style>
+
+    </controls:MetroWindow.Resources>
+
+    <controls:MetroWindow.RightWindowCommands>
+        <controls:WindowCommands>
+            <Button  Command="{Binding Path=AboutCommand}"
+                     Content="ABOUT" />
+        </controls:WindowCommands>
+    </controls:MetroWindow.RightWindowCommands>
+
+    <controls:MetroWindow.Flyouts>
+        <controls:FlyoutsControl Background="#FF590000">
+            <controls:Flyout Position="Right"
+                             Background="#FF590000"
+                             Height="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=controls:MetroWindow}, Path=ActualHeight}"
+                             Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=controls:MetroWindow}, Path=ActualWidth}"
+                             IsOpen="{Binding Path=IsAboutFlyoutOpen}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"></RowDefinition>
+                        <RowDefinition Height="2"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="25"></RowDefinition>
+                        <RowDefinition Height="2"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+
+                    <Grid Grid.Row="0">
+                        <TextBlock HorizontalAlignment="Center"
+                                   FontSize="1"
+                                   TextAlignment="Center"
+                                   Margin="0" Width="550" Height="35">
+                            <TextBlock.Background>
+                                <ImageBrush ImageSource="/GrandTheftMultiplayer.Launcher;component/Resources/Images/only_text.png"/>
+                            </TextBlock.Background>  
+                            <LineBreak />
+                        </TextBlock>
+                    </Grid>
+
+                    <Grid Grid.Row="1"
+                          Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=controls:MetroWindow}, Path=ActualWidth}"
+                          Background="DarkGray">
+                    </Grid>
+                    <Grid Grid.Row="2"
+                          Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=controls:MetroWindow}, Path=ActualWidth}">
+                        <TextBlock Grid.Row="0"
+                                   HorizontalAlignment="Center"
+                                   FontSize="20"
+                                   TextAlignment="Center">  
+                            <TextBlock HorizontalAlignment="Center"
+                                       FontSize="18"
+                                       TextAlignment="Center"
+                                       Margin="10">  
+                                <Run Text="Grand Theft Multiplayer (GT-MP) is a free alternative multiplayer modification for Grand Theft Auto V" />
+                                <LineBreak />
+                                <Run Text="allowing you to play with up to 1500 players." />
+                            </TextBlock>
+                            <LineBreak />
+                            <LineBreak />
+                            
+                            <TextBlock HorizontalAlignment="Center"
+                                       FontSize="18"
+                                       TextAlignment="Center">  
+                                <Run Text="Developers"
+                                     FontSize="24" />
+                                <LineBreak />
+                                <Run Text="DurtyFree" />
+                                <LineBreak />
+                                <Run Text="Msk" />
+                                <LineBreak />
+                                <Run Text="Eraknelo" />
+                                <LineBreak />
+                                <Run Text="Miss" />
+                            </TextBlock>
+                            <LineBreak />
+                            <LineBreak />
+                            <TextBlock FontSize="18"
+                                       Margin="3"
+                                       HorizontalAlignment="Center">Special thanks to all contributors, testers and mirror providers.</TextBlock>
+                            <LineBreak />
+                        </TextBlock>
+                    </Grid>
+                    <Grid Grid.Row="3"
+                          Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=controls:MetroWindow}, Path=ActualWidth}">
+                    </Grid>
+                    <Grid Grid.Row="4"
+                          Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=controls:MetroWindow}, Path=ActualWidth}"
+                          Background="DarkGray">
+                    </Grid>
+                    <Grid Grid.Row="5"
+                          Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=controls:MetroWindow}, Path=ActualWidth}">
+                        <TextBlock FontSize="12"
+                                   Margin="3"
+                                   HorizontalAlignment="Center"
+                                   Text="© GT-MP is in no way affiliated with Rockstar Games, Inc. or Take-Two Interactive Software, Inc.">
+                        </TextBlock>
+                        <TextBlock HorizontalAlignment="Right"
+                                   Margin="10">Version: 1.0</TextBlock>
+                    </Grid>
+                </Grid>
+            </controls:Flyout>
+        </controls:FlyoutsControl>
+    </controls:MetroWindow.Flyouts>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+              Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.Background>
+                <ImageBrush ImageSource="../Resources/Images/banner.jpg"
+                            Stretch="UniformToFill" />
+            </Grid.Background>
+
+            <StackPanel Orientation="Horizontal"
+                        Margin="10,5,0,0"
+                        Height="45"
+                        Grid.Row="0"
+                        Grid.Column="0">
+                <Label
+                       Foreground="White"
+                       Style="{StaticResource HeaderTextStyle}" Width="550" Height="35" Margin="4,0,0,0" >
+                    <Label.Background>
+                        <ImageBrush ImageSource="/GrandTheftMultiplayer.Launcher;component/Resources/Images/only_text.png"/>
+                    </Label.Background>
+                </Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Margin="14,0,0,10"
+                        Grid.Row="1"
+                        Grid.Column="0">
+                <Label Content="{Binding Statistics.TotalPlayersOnline}"
+                       ContentStringFormat="Total Players: {0}"
+                       Style="{StaticResource SubHeaderTextStyle}"
+                       FontFamily="Segoe UI" />
+
+                <Label Content="{Binding Statistics.TotalServersOnline}"
+                       ContentStringFormat="Total Servers: {0}"
+                       Style="{StaticResource SubHeaderTextStyle}"
+                       FontFamily="Segoe UI" />
+            </StackPanel>
+            <Button BorderThickness="0"
+                    Command="{Binding LaunchButtonClickedCommand}"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Grid.RowSpan="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="LAUNCH"
+                               Foreground="White"
+                               FontWeight="Bold"
+                               FontSize="25"
+                               VerticalAlignment="Center"
+                               Grid.Column="0" />
+                    <Rectangle Margin="10,0,0,0"
+                               Width="30"
+                               Height="30"
+                               Fill="{DynamicResource AccentColorBrush}"
+                               Grid.Column="1">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Uniform"
+                                         Visual="{StaticResource appbar_chevron_right}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </Grid>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background"
+                                Value="Transparent" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Padding="20,0"
+                                            Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter Property="Background"
+                                        Value="#33FFFFFF"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed"
+                                     Value="True">
+                                <Setter Property="Background"
+                                        Value="#55FFFFFF"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+
+        <TabControl Margin="10,5,10,10"
+                    Grid.Row="1">
+            <TabItem Header="Home">
+                <ScrollViewer>
+                    <ItemsControl ItemsSource="{Binding News}"
+                                  ItemTemplate="{StaticResource NewsDataTemplate}">
+
+                    </ItemsControl>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Servers">
+                <TabControl>
+                    <TabItem Header="Internet" Style="{StaticResource SubTabItem}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="GotFocus">
+                                <command:EventToCommand Command="{Binding Mode=OneWay, Path=ServerListTabGotFocusCommand}" CommandParameter="{Binding ServerListViewModel}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <views:ServerBrowser DataContext="{Binding ServerListViewModel}" />
+                    </TabItem>
+                    <TabItem Header="Verified" Style="{StaticResource SubTabItem}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="GotFocus">
+                                <command:EventToCommand Command="{Binding Mode=OneWay, Path=ServerListTabGotFocusCommand}" CommandParameter="{Binding VerifiedServerListViewModel}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <views:ServerBrowser DataContext="{Binding VerifiedServerListViewModel}" />
+                    </TabItem>
+                    <TabItem Header="Favorites" Style="{StaticResource SubTabItem}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="GotFocus">
+                                <command:EventToCommand Command="{Binding Mode=OneWay, Path=ServerListTabGotFocusCommand}" CommandParameter="{Binding FavoriteServerListViewModel}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <views:ServerBrowser DataContext="{Binding FavoriteServerListViewModel}" />
+                    </TabItem>
+                    <TabItem Header="Recent" Style="{StaticResource SubTabItem}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="GotFocus">
+                                <command:EventToCommand Command="{Binding Mode=OneWay, Path=ServerListTabGotFocusCommand}" CommandParameter="{Binding RecentServerListViewModel}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <views:ServerBrowser DataContext="{Binding RecentServerListViewModel}" />
+                    </TabItem>
+                    <!--<TabItem Header="Local"
+                             Style="{StaticResource SubTabItem}">
+                        <views:ServerBrowser DataContext="{Binding LocalServerListViewModel}" />
+                    </TabItem>-->
+                </TabControl>
+            </TabItem>
+            <TabItem Header="Host">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <ScrollViewer Margin="0,0,5,0"
+                                  VerticalScrollBarVisibility="Auto"
+                                  Grid.Row="0"
+                                  Grid.Column="0">
+                        <StackPanel Orientation="Vertical">
+                            <Label FontSize="14"
+                                   FontFamily="Segoe UI">Server Path</Label>
+                            <TextBox Style="{DynamicResource MetroButtonTextBox}"
+                                     IsReadOnly="True"
+                                     Margin="10,10,5,10"
+                                     controls:TextBoxHelper.Watermark="{Binding Settings.ServerHostPath}"
+                                     controls:TextBoxHelper.ButtonCommand="{Binding BrowseServerFileCommand, Mode=OneWay}"
+                                     FontSize="14"
+                                     FontFamily="Segoe UI">
+                                <controls:TextBoxHelper.ButtonContent>
+                                    <Rectangle HorizontalAlignment="Center"
+                                               Fill="{DynamicResource TextBrush}"
+                                               Width="13"
+                                               Height="15">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Uniform"
+                                                         Visual="{StaticResource appbar_page_search}" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                </controls:TextBoxHelper.ButtonContent>
+                            </TextBox>
+                            <Button Margin="5,25,5,10"
+                                    Command="{Binding StartServerCommand, Mode=OneWay}">
+                                <TextBlock>Start</TextBlock>
+                            </Button>
+                            <Button Margin="5,0,5,10"
+                                    Command="{Binding StopServerCommand, Mode=OneWay}">
+                                <TextBlock>Stop</TextBlock>
+                            </Button>
+                            <Button Margin="5,0,5,10"
+                                    Command="{Binding RestartServerCommand, Mode=OneWay}">
+                                <TextBlock>Restart</TextBlock>
+                            </Button>
+
+                            <Button Margin="5,25,5,10"
+                                    Command="{Binding BrowseResourceDirectoryCommand, Mode=OneWay}">
+                                <TextBlock>Browse resource directory</TextBlock>
+                            </Button>
+                            <Button Margin="5,0,5,10"
+                                    Command="{Binding OpenServerSettingsXmlCommand, Mode=OneWay}">
+                                <TextBlock>Edit settings.xml</TextBlock>
+                            </Button>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                  Margin="5,5,5,5"
+                                  Grid.Column="1"
+                                  Grid.Row="0">
+                        <TextBox Background="Black"
+                                 Foreground="White"
+                                 FontFamily="Consolas"
+                                 FontSize="16"
+                                 Text="{Binding ServerOutput, Mode=OneWay}"
+                                 IsReadOnly="True"
+                                 TextWrapping="Wrap"
+                                 VerticalScrollBarVisibility="Auto"
+                                 TextChanged="TextBox_TextChanged" />
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Settings">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TabControl Grid.Row="0">
+                        <TabItem Header="Game Settings"
+                                 Style="{StaticResource SubTabItem}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="3*" />
+                                </Grid.ColumnDefinitions>
+
+                                <ScrollViewer Margin="0,0,5,0"
+                                              VerticalScrollBarVisibility="Auto"
+                                              Grid.Row="0"
+                                              Grid.Column="0">
+
+                                    <StackPanel Orientation="Vertical">
+                                        <Label FontSize="14"
+                                               FontFamily="Segoe UI">Display Name</Label>
+                                        <TextBox Margin="10 10 5 10"
+                                                 Text="{Binding Path=Settings.DisplayName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                 controls:TextBoxHelper.ClearTextButton="True"
+                                                 controls:TextBoxHelper.Watermark="{Binding Settings.DisplayName}"
+                                                 FontSize="14"
+                                                 FontFamily="Segoe UI" />
+                                        <Label FontSize="14"
+                                               FontFamily="Segoe UI">Update Channel</Label>
+                                        <TextBox Margin="10 10 5 10"
+                                                 Text="{Binding Path=Settings.UpdateChannel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                 controls:TextBoxHelper.ClearTextButton="True"
+                                                 controls:TextBoxHelper.Watermark="{Binding Settings.UpdateChannel}"
+                                                 FontSize="14"
+                                                 FontFamily="Segoe UI" />
+                                        <Label FontSize="14"
+                                               FontFamily="Segoe UI">Game Path</Label>
+                                        <TextBox Style="{DynamicResource MetroButtonTextBox}"
+                                                 IsReadOnly="True"
+                                                 Margin="10,10,5,10"
+                                                 controls:TextBoxHelper.Watermark="{Binding Settings.GamePath}"
+                                                 controls:TextBoxHelper.ButtonCommand="{Binding BrowseGameFileCommand, Mode=OneWay}"
+                                                 FontSize="14"
+                                                 FontFamily="Segoe UI">
+                                            <controls:TextBoxHelper.ButtonContent>
+                                                <Rectangle HorizontalAlignment="Center"
+                                                           Fill="{DynamicResource TextBrush}"
+                                                           Width="13"
+                                                           Height="15">
+                                                    <Rectangle.OpacityMask>
+                                                        <VisualBrush Stretch="Uniform"
+                                                                     Visual="{StaticResource appbar_page_search}" />
+                                                    </Rectangle.OpacityMask>
+                                                </Rectangle>
+                                            </controls:TextBoxHelper.ButtonContent>
+                                        </TextBox>
+                                        <!--<controls:ToggleSwitch TextOptions.TextHintingMode="Fixed"
+                                                           Header="Theme"
+                                                           IsChecked="{Binding Settings.DarkTheme}"
+                                                           OffLabel="Light"
+                                                           OnLabel="Dark" />-->
+                                    </StackPanel>
+                                </ScrollViewer>
+
+                                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                              Margin="5,0,0,0"
+                                              Grid.Column="2"
+                                              Grid.Row="0">
+                                    <StackPanel Orientation="Vertical">
+                                        <controls:ToggleSwitch OnLabel="Rockstar Editor"
+                                                               OffLabel="Rockstar Editor"
+                                                               IsChecked="{Binding Settings.DisableRockstarEditor}" />
+                                        <controls:ToggleSwitch OnLabel="Display Game Framerate"
+                                                               OffLabel="Display Game Framerate"
+                                                               IsChecked="{Binding Settings.ShowFPS}" />
+                                        <controls:ToggleSwitch OnLabel="CEF Media Stream"
+                                                               OffLabel="CEF Media Stream"
+                                                               IsChecked="{Binding Settings.MediaStream}" />
+                                        <controls:ToggleSwitch OnLabel="Show Timestamp"
+                                                               OffLabel="Show Timestamp"
+                                                               IsChecked="{Binding Settings.Timestamp}" />
+                                        <controls:ToggleSwitch OnLabel="Use Military Time"
+                                                               OffLabel="Use Military Time"
+                                                               IsChecked="{Binding Settings.Militarytime}" />
+                                        <controls:ToggleSwitch OnLabel="Use Classic Chat"
+                                                               OffLabel="Use Classic Chat"
+                                                               IsChecked="{Binding Settings.UseClassicChat}" />
+                                        <controls:ToggleSwitch OnLabel="Disable Chromium Embedded Framework (CEF)"
+                                                               OffLabel="Disable Chromium Embedded Framework (CEF)"
+                                                               IsChecked="{Binding Settings.DisableCEF}" />
+                                        <controls:ToggleSwitch OnLabel="Check and ask to back up game on launch"
+                                                               OffLabel="Check and ask to back up game on launch"
+                                                               IsChecked="{Binding Settings.AskToBackUpGame}" />
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+
+                    <Button Content="Apply"
+                            Margin="0,10,0,0"
+                            Grid.Row="1"
+                            Command="{Binding ApplySettingsCommand}" />
+                </Grid>
+            </TabItem>
+
+            <!--<TabItem Header="Help">
+                <ScrollViewer>
+                    <ItemsControl ItemsSource="{Binding HelpItems}"
+                                  ItemTemplate="{StaticResource HelpDataTemplate}">
+
+                    </ItemsControl>
+                </ScrollViewer>
+            </TabItem>-->
+        </TabControl>
+
+
+        <ListView TextOptions.TextHintingMode="Animated"
+                  TextOptions.TextRenderingMode="Auto"
+                  TextOptions.TextFormattingMode="Ideal"
+                  ItemsSource="{Binding NotificationService.Notifications}"
+                  HorizontalContentAlignment="Stretch"
+                  BorderThickness="0"
+                  ItemTemplate="{StaticResource NotificationDataTemplate}"
+                  Background="{x:Null}"
+                  VerticalAlignment="Bottom"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  Grid.Row="1"
+                  FontFamily="Segoe UI">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Padding"
+                            Value="0" />
+                    <Setter Property="Margin"
+                            Value="0" />
+                    <Setter Property="BorderThickness"
+                            Value="0" />
+                    <Setter Property="LayoutTransform">
+                        <Setter.Value>
+                            <ScaleTransform x:Name="transform" />
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="Loaded">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="LayoutTransform.ScaleY"
+                                                         From="0"
+                                                         Duration="0:0:.2" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+    </Grid>
+</controls:MetroWindow>
+

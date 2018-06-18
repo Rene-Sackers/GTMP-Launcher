@@ -1,0 +1,49 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:GrandTheftMultiplayer.Launcher.Converters"
+                    xmlns:serverstatusapi="clr-namespace:GrandTheftMultiplayer.Launcher.Models.Status"
+                    xmlns:helpers="clr-namespace:GrandTheftMultiplayer.Launcher.Helpers">
+    
+    <converters:ServerStatusToColorConverter x:Key="ServerStatusToColorConverter" 
+                                                OperationalColor="#FF33CC33"
+                                                PerformanceIssuesColor="#FFCCEE33"
+                                                PartialOutageColor="#FFEECC33"
+                                                MajorOutageColor="#FFCC3333"/>
+    
+    <DataTemplate x:Key="ServerStatusInfoDataTemplate" DataType="{x:Type serverstatusapi:ServerStatus}">
+        <Grid Margin="0,5">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="60" />
+            </Grid.ColumnDefinitions>
+
+            <Rectangle Fill="{Binding Status, Converter={StaticResource ServerStatusToColorConverter}}"  Width="5" Margin="0,0,10,0" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" />
+
+            <TextBlock Text="{Binding Name}" FontSize="20" Grid.Row="0" Grid.Column="1" />
+
+            <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="1" Grid.Column="1">
+                <TextBlock Visibility="{Binding Link, Converter={StaticResource StringLengthToVisibilityConverter}}" Margin="0,0,5,0">
+                        <Run Text="Link: " />
+                        <Hyperlink NavigateUri="{Binding Link}" helpers:HyperlinkHelper.IsExternal="True" Foreground="{DynamicResource TextBrush}">
+                            <Run Text="{Binding Link}" />
+                        </Hyperlink>
+                        <Run Text="|" />
+                </TextBlock>
+                <TextBlock Margin="0,0,5,0">
+                        <Run Text="Updated: " />
+                        <Run Text="{Binding UpdatedAt}" />
+                </TextBlock>
+                <TextBlock>
+                        <Run Text="| Status: " />
+                        <Run Text="{Binding StatusName}" />
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

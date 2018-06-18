@@ -1,0 +1,26 @@
+﻿<Window x:Class="GrandTheftMultiplayer.Launcher.Views.UpdateSplashScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d"
+		WindowStyle="None"
+		ResizeMode="NoResize"
+        Title="UpdateSplashScreen"
+		SizeToContent="WidthAndHeight"
+		WindowStartupLocation="CenterScreen"
+        DataContext="{Binding Source={StaticResource Locator}, Path=UpdateSplashScreen}"
+		BorderBrush="{DynamicResource AccentColorBrush}"
+		BorderThickness="1"
+		Topmost="True">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		
+		<Label Padding="0" Margin="0,0,0,10" Grid.Row="0">Updating GT-MP launcher...</Label>
+		<controls:MetroProgressBar Value="{Binding UpdateProgressPercentage, Mode=OneWay}" Width="300" Grid.Row="1" />
+    </Grid>
+</Window>

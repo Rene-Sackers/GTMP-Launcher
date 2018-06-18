@@ -1,0 +1,40 @@
+﻿<Window x:Class="GrandTheftMultiplayer.Launcher.Views.PromptWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GrandTheftMultiplayer.Launcher.Views"
+        xmlns:promptWindow="clr-namespace:GrandTheftMultiplayer.Launcher.Models.PromptWindow"
+        xmlns:design="clr-namespace:GrandTheftMultiplayer.Launcher.ViewModel.Design"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        WindowStartupLocation="CenterOwner"
+        SizeToContent="WidthAndHeight"
+        MaxWidth="350"
+        d:DataContext="{d:DesignInstance Type=design:PromptWindowDesignViewModel, IsDesignTimeCreatable=True}">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <TextBlock TextWrapping="Wrap" Grid.Row="0">
+            <Run>In order to play the Grand Theft Multiplayer mod, you must accept the</Run>
+            <Hyperlink NavigateUri="https://..." RequestNavigate="Hyperlink_OnRequestNavigate">EULA</Hyperlink>
+            <Run>.</Run>
+        </TextBlock>
+
+        <ItemsControl ItemsSource="{Binding Buttons}" Margin="0,10,0,0" Grid.Row="1">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal"></StackPanel>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type promptWindow:PromptButton}">
+                    <Button Content="{Binding Title}" Command="{Binding ClickedCommand}" Margin="5,0,0,0" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</Window>
